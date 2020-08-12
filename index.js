@@ -3,11 +3,13 @@ var iteration = document.querySelectorAll('.drum').length;
 for (let i = 0; i < iteration; i++) {
 	document.querySelectorAll('.drum')[i].addEventListener('click', function () {
 		drumKit(this.innerHTML);
+		animation(this.innerHTML);
 	});
 }
 
 document.addEventListener('keypress', function (event) {
 	drumKit(event.key);
+	animation(event.key);
 });
 
 function drumKit(key) {
@@ -44,4 +46,12 @@ function drumKit(key) {
 		default:
 			console.log(InnerHtml);
 	}
+}
+
+function animation(activeButton) {
+	var active = document.querySelector('.' + activeButton);
+	active.classList.add('pressed');
+	setTimeout(() => {
+		active.classList.remove('pressed');
+	}, 100);
 }
